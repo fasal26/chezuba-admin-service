@@ -7,7 +7,7 @@ export class OrderController {
     @Get("/list")
     async getOrderList(@Req() req: Request, @Res() res: Response) {
         try {
-            const { status, data } = await new ORDER_SERVICE().getOrderList({STATUS: 'Pending'})
+            const { status, data } = await new ORDER_SERVICE().getOrderList({STATUS: { $in: ['Pending','In-progress'] }})
             return res
                 .status(status)
                 .json(data);
